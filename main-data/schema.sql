@@ -2,22 +2,22 @@
 Navicat MySQL Data Transfer
 
 Source Server         : mine
-Source Server Version : 50557
-Source Host           : 112.74.60.248:3306
+Source Server Version : 5.7.25-0ubuntu0.18.04.2
+Source Host           : localhost:3306
 Source Database       : main-data
 
 Target Server Type    : MYSQL
 Target Server Version : 50557
 File Encoding         : 65001
 
-Date: 2018-06-17 23:36:19
+Date: 2019-01-31 19:07:19
 */
 
 set character set utf8;
 -- 创建数据库
-create database `main-data` default character set utf8 collate utf8_general_ci;
+create database `basic-data` default character set utf8 collate utf8_general_ci;
 
-use `main-data`;
+use `basic-data`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -26,201 +26,96 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `base_module_resources`;
 CREATE TABLE `base_module_resources` (
-  `ID` varchar(36) NOT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
   `MODULE_NAME` varchar(64) DEFAULT NULL,
   `MODULE_CODE` varchar(64) DEFAULT NULL,
   `MODULE_PATH` varchar(255) DEFAULT NULL,
-  `PARENT_ID` varchar(36) DEFAULT NULL,
+  `PARENT_ID` bigint(12) DEFAULT NULL,
   `MODULE_ICON` varchar(64) DEFAULT NULL,
   `HTTP_METHOD` varchar(8) DEFAULT NULL,
   `IS_OPERATING` int(11) DEFAULT NULL COMMENT '0 否，1 是',
   `SORT` int(11) DEFAULT NULL,
-  `SYSTEM_ID` varchar(36) DEFAULT NULL,
+  `SYSTEM_ID` bigint(12) DEFAULT NULL,
   `ACTIVE` int(11) DEFAULT NULL,
   `CREATE_DATE` datetime DEFAULT NULL,
   `UPDATE_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `FK_Reference_5` (`PARENT_ID`),
   KEY `SYSTEM_ID` (`SYSTEM_ID`),
   CONSTRAINT `FK_Reference_5` FOREIGN KEY (`PARENT_ID`) REFERENCES `base_module_resources` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `FK_Reference_6` FOREIGN KEY (`SYSTEM_ID`) REFERENCES `base_system` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of base_module_resources
 -- ----------------------------
-INSERT INTO `base_module_resources` VALUES ('113e9c94-8405-11e7-b35a-00ff6227aaa1', '系统设置', 'STSTEM_SETTINGS', '/system', null, 'el-icon-setting', null, '0', '1', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-08-18 19:04:21', '2017-08-23 16:13:29');
-INSERT INTO `base_module_resources` VALUES ('142ce669-96a2-11e7-863e-00ff6227aaa1', '查询模块表格', 'QUERY_MODULE_TABLE', '/module/table', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'POST', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 11:33:31', null);
-INSERT INTO `base_module_resources` VALUES ('26305844-96a5-11e7-863e-00ff6227aaa1', '获取已授权的模块', 'GET_ROLE_AUTH_MODULE', '/role/auth/{roleId}', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('2675469b-96a4-11e7-863e-00ff6227aaa1', '查询系统表格', 'QUERY_SYSTEM_TABLE', '/system/table', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('2c82fb06-8405-11e7-b35a-00ff6227aaa1', '用户管理', 'USER_MANAGED', '/user', '113e9c94-8405-11e7-b35a-00ff6227aaa1', 'el-icon-menu', null, '0', '1', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 10:53:15', '2017-08-23 17:09:34');
-INSERT INTO `base_module_resources` VALUES ('31e6c4b8-96a6-11e7-863e-00ff6227aaa1', '获取所有角色', 'GET_ROLES', '/role', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 12:02:45', null);
-INSERT INTO `base_module_resources` VALUES ('32d0aeab-8405-11e7-b35a-00ff6227aaa1', '角色管理', 'ROLE_MANAGED', '/role', '113e9c94-8405-11e7-b35a-00ff6227aaa1', null, null, '0', '2', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 10:53:13', null);
-INSERT INTO `base_module_resources` VALUES ('366b227a-2c30-11e8-bb2a-2cfda1b1e42a', '校验角色编码', 'VALIDATE_ROLE_CODE', '/role/validate/{roleCode}', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2018-03-20 19:17:02', null);
-INSERT INTO `base_module_resources` VALUES ('3c6bf3e2-969c-11e7-863e-00ff6227aaa1', '查询系统', 'QUERY_SYSTEM', '/system', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 10:53:18', null);
-INSERT INTO `base_module_resources` VALUES ('42179355-96a4-11e7-863e-00ff6227aaa1', '新增系统', 'ADD_SYSTEM', '/system', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('4b7f31dc-96a5-11e7-863e-00ff6227aaa1', '保存授权模块', 'SAVE_ROLE_AUTH_MODULE', '/module/role', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('5039b225-96a4-11e7-863e-00ff6227aaa1', '编辑系统', 'EDIT_SYSTEM', '/system', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'PUT', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('55c48c41-96a2-11e7-863e-00ff6227aaa1', '新增模块', 'ADD_MODULE', '/module', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'POST', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 11:35:02', null);
-INSERT INTO `base_module_resources` VALUES ('56b67433-96dc-11e7-863e-00ff6227aaa1', '校验模块', 'VALIDATE_MODULE_CODE', '/module/validate/{moduleCode}', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:31:58', null);
-INSERT INTO `base_module_resources` VALUES ('5a46be4f3e3a443f9244c8e4ca8c836b', '校验手机号码', 'VALIDATE_USER_PHONE', '/user/validate/phone/{phone}', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2018-06-16 18:04:54', '2018-06-16 18:51:10');
-INSERT INTO `base_module_resources` VALUES ('5b5c0fe2-96a6-11e7-863e-00ff6227aaa1', '获取已授权的角色', 'GET_USER_ROLE', '/user/role/{userId}', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 12:03:59', null);
-INSERT INTO `base_module_resources` VALUES ('5c82bed5-96a4-11e7-863e-00ff6227aaa1', '删除系统', 'DELETE_SYSTEM', '/system', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'DELETE', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('7362412e-96a2-11e7-863e-00ff6227aaa1', '编辑模块', 'EDIT_MODULE', '/module', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'PUT', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 11:35:02', null);
-INSERT INTO `base_module_resources` VALUES ('7bf5a9aa-96a6-11e7-863e-00ff6227aaa1', '保存用户角色授权', 'SAVE_USER_ROLE', '/user/role', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 12:04:51', null);
-INSERT INTO `base_module_resources` VALUES ('7e669afe-96dc-11e7-863e-00ff6227aaa1', '校验系统项目名', 'VALIDATE_PROJECT_NAME', '/system/validate/{projectName}', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2018-05-13 16:40:29', null);
-INSERT INTO `base_module_resources` VALUES ('7e97b3b3-96a5-11e7-863e-00ff6227aaa1', '查询用户表格', 'QUERY_USER_TABLE', '/user/table', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('822f714c-96a2-11e7-863e-00ff6227aaa1', '删除模块', 'DELETE_MODULE', '/module', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'DELETE', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 11:35:02', null);
-INSERT INTO `base_module_resources` VALUES ('8338ce98-969c-11e7-863e-00ff6227aaa1', '获取模块树', 'GET_MODULE_TREE', '/module/tree', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'POST', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 10:53:20', null);
-INSERT INTO `base_module_resources` VALUES ('8e669afe-96dc-11e7-863e-00ff6227aaa1', '校验用户名', 'VALIDATE_USER_NAME', '/user/validate/{userName}', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:32:00', null);
-INSERT INTO `base_module_resources` VALUES ('8f84a111-96a4-11e7-863e-00ff6227aaa1', '查询角色表格', 'QUERY_ROLE_TABLE', '/role/table', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('943d1ffa-96dd-11e7-863e-00ff6227aaa1', '应用管理', 'APP_MANAGED', '/app', '113e9c94-8405-11e7-b35a-00ff6227aaa1', null, 'GET', '0', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:38:34', null);
-INSERT INTO `base_module_resources` VALUES ('9d74d7eb-96a5-11e7-863e-00ff6227aaa1', '新增用户', 'ADD_USER', '/user', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('9fe933bc-96a4-11e7-863e-00ff6227aaa1', '新增角色', 'ADD_ROLE', '/role', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('ad04ec2c-96a4-11e7-863e-00ff6227aaa1', '编辑角色', 'EDIT_ROLE', '/role', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'PUT', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('adc1e2dc-96a5-11e7-863e-00ff6227aaa1', '编辑用户', 'EDIT_USER', '/user', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'PUT', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('b0c7cd02-96dd-11e7-863e-00ff6227aaa1', '查询应用表格', 'QUERY_APP_TABLE', '/client/table', '943d1ffa-96dd-11e7-863e-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:39:22', null);
-INSERT INTO `base_module_resources` VALUES ('b25a02e3-92c7-11e7-8c99-00ff6227aaa1', '系统管理', 'SYSTEM_MANAGED', '/system', '113e9c94-8405-11e7-b35a-00ff6227aaa1', null, null, '0', '3', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-08-22 15:45:08', null);
-INSERT INTO `base_module_resources` VALUES ('ba185893-96a4-11e7-863e-00ff6227aaa1', '删除角色', 'DELETE_ROLE', '/role', '32d0aeab-8405-11e7-b35a-00ff6227aaa1', null, 'DELETE', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('c3e5fc76-96a5-11e7-863e-00ff6227aaa1', '删除用户', 'DELETE_USER', '/user', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'DELETE', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('c54a02b8-96dd-11e7-863e-00ff6227aaa1', '新增应用', 'ADD_APP', '/client', '943d1ffa-96dd-11e7-863e-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:39:56', null);
-INSERT INTO `base_module_resources` VALUES ('cecfed9a0fc5452b8b4d889e5ea121ae', '校验应用id', 'VALIDATE_CLIENT_ID', '/client/validate/{clientId}', '943d1ffa-96dd-11e7-863e-00ff6227aaa1', null, 'GET', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2018-05-15 16:36:36', null);
-INSERT INTO `base_module_resources` VALUES ('d3fccbfb-96dd-11e7-863e-00ff6227aaa1', '编辑应用', 'EDIT_APP', '/client', '943d1ffa-96dd-11e7-863e-00ff6227aaa1', null, 'PUT', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:40:21', null);
-INSERT INTO `base_module_resources` VALUES ('e1ff4d1d-96a5-11e7-863e-00ff6227aaa1', '重置密码', 'RESET_PASSWORD', '/user/password/{newPassword}', '2c82fb06-8405-11e7-b35a-00ff6227aaa1', null, 'POST', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('e29bd47a-96dd-11e7-863e-00ff6227aaa1', '删除应用', 'DELETE_APP', '/client', '943d1ffa-96dd-11e7-863e-00ff6227aaa1', null, 'DELETE', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 18:40:45', null);
-INSERT INTO `base_module_resources` VALUES ('e69131c2-870d-11e7-ad1e-00ff6227aaa1', '模块管理', 'MODULE_MANAGED', '/module', '113e9c94-8405-11e7-b35a-00ff6227aaa1', null, null, '0', '3', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-08-22 15:45:08', null);
-INSERT INTO `base_module_resources` VALUES ('eff8eda4-937d-11e7-8c99-00ff6227aaa1', '查询菜单', 'QUERY_MENU', '/menu', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1', null, 'GET', '1', '0', 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-07 11:37:49', null);
-INSERT INTO `base_module_resources` VALUES ('fe4a6d1f-96a4-11e7-863e-00ff6227aaa1', '获取系统与模块', 'GET_SYSTEM_MODULE', '/system/module', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1', null, 'GET', '1', null, 'd69060a3-914b-11e7-8c99-00ff6227aaa1', '1', '2017-09-11 10:53:18', null);
+INSERT INTO `base_module_resources` VALUES (1,'系统设置','STSTEM_SETTINGS','/system',NULL,'el-icon-setting',NULL,0,1,1,1,'2017-08-18 19:04:21','2017-08-23 16:13:29'),(2,'查询模块表格','QUERY_MODULE_TABLE','/module/table',40,NULL,'POST',1,NULL,1,1,'2017-09-11 11:33:31',NULL),(3,'获取已授权的模块','GET_ROLE_AUTH_MODULE','/role/auth/{roleId}',7,NULL,'GET',1,0,1,1,'2017-09-07 11:37:49',NULL),(4,'查询系统表格','QUERY_SYSTEM_TABLE','/system/table',32,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(5,'用户管理','USER_MANAGED','/user',1,'el-icon-menu',NULL,0,1,1,1,'2017-09-11 10:53:15','2017-08-23 17:09:34'),(6,'获取所有角色','GET_ROLES','/role',7,NULL,'GET',1,NULL,1,1,'2017-09-11 12:02:45',NULL),(7,'角色管理','ROLE_MANAGED','/role',1,NULL,NULL,0,2,1,1,'2017-09-11 10:53:13',NULL),(8,'校验角色编码','VALIDATE_ROLE_CODE','/role/validate/{roleCode}',7,NULL,'GET',1,0,1,1,'2018-03-20 19:17:02',NULL),(9,'查询系统','QUERY_SYSTEM','/system',32,NULL,'GET',1,NULL,1,1,'2017-09-11 10:53:18',NULL),(10,'新增系统','ADD_SYSTEM','/system',32,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(11,'保存授权模块','SAVE_ROLE_AUTH_MODULE','/module/role',7,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(12,'编辑系统','EDIT_SYSTEM','/system',32,NULL,'PUT',1,0,1,1,'2017-09-07 11:37:49',NULL),(13,'新增模块','ADD_MODULE','/module',40,NULL,'POST',1,NULL,1,1,'2017-09-11 11:35:02',NULL),(14,'校验模块','VALIDATE_MODULE_CODE','/module/validate/{moduleCode}',40,NULL,'GET',1,NULL,1,1,'2017-09-11 18:31:58',NULL),(15,'校验手机号码','VALIDATE_USER_PHONE','/user/validate/phone/{phone}',5,NULL,'GET',1,0,1,1,'2018-06-16 18:04:54','2018-06-16 18:51:10'),(16,'获取已授权的角色','GET_USER_ROLE','/user/role/{userId}',5,NULL,'GET',1,NULL,1,1,'2017-09-11 12:03:59',NULL),(17,'删除系统','DELETE_SYSTEM','/system',32,NULL,'DELETE',1,0,1,1,'2017-09-07 11:37:49',NULL),(18,'编辑模块','EDIT_MODULE','/module',40,NULL,'PUT',1,NULL,1,1,'2017-09-11 11:35:02',NULL),(19,'保存用户角色授权','SAVE_USER_ROLE','/user/role',5,NULL,'POST',1,NULL,1,1,'2017-09-11 12:04:51',NULL),(20,'校验系统项目名','VALIDATE_PROJECT_NAME','/system/validate/{projectName}',32,NULL,'GET',1,NULL,1,1,'2018-05-13 16:40:29',NULL),(21,'查询用户表格','QUERY_USER_TABLE','/user/table',5,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(22,'删除模块','DELETE_MODULE','/module',40,NULL,'DELETE',1,NULL,1,1,'2017-09-11 11:35:02',NULL),(23,'获取模块树','GET_MODULE_TREE','/module/tree',40,NULL,'POST',1,NULL,1,1,'2017-09-11 10:53:20',NULL),(24,'校验用户名','VALIDATE_USER_NAME','/user/validate/{userName}',5,NULL,'GET',1,NULL,1,1,'2017-09-11 18:32:00',NULL),(25,'查询角色表格','QUERY_ROLE_TABLE','/role/table',7,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(26,'应用管理','APP_MANAGED','/app',1,NULL,'GET',0,0,1,1,'2017-09-11 18:38:34',NULL),(27,'新增用户','ADD_USER','/user',5,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(28,'新增角色','ADD_ROLE','/role',7,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(29,'编辑角色','EDIT_ROLE','/role',7,NULL,'PUT',1,0,1,1,'2017-09-07 11:37:49',NULL),(30,'编辑用户','EDIT_USER','/user',5,NULL,'PUT',1,0,1,1,'2017-09-07 11:37:49',NULL),(31,'查询应用表格','QUERY_APP_TABLE','/client/table',26,NULL,'POST',1,0,1,1,'2017-09-11 18:39:22',NULL),(32,'系统管理','SYSTEM_MANAGED','/system',1,NULL,NULL,0,3,1,1,'2017-08-22 15:45:08',NULL),(33,'删除角色','DELETE_ROLE','/role',7,NULL,'DELETE',1,0,1,1,'2017-09-07 11:37:49',NULL),(34,'删除用户','DELETE_USER','/user',5,NULL,'DELETE',1,0,1,1,'2017-09-07 11:37:49',NULL),(35,'新增应用','ADD_APP','/client',26,NULL,'POST',1,0,1,1,'2017-09-11 18:39:56',NULL),(36,'校验应用id','VALIDATE_CLIENT_ID','/client/validate/{clientId}',26,NULL,'GET',1,0,1,1,'2018-05-15 16:36:36',NULL),(37,'编辑应用','EDIT_APP','/client',26,NULL,'PUT',1,0,1,1,'2017-09-11 18:40:21',NULL),(38,'重置密码','RESET_PASSWORD','/user/password/{newPassword}',5,NULL,'POST',1,0,1,1,'2017-09-07 11:37:49',NULL),(39,'删除应用','DELETE_APP','/client',26,NULL,'DELETE',1,0,1,1,'2017-09-11 18:40:45',NULL),(40,'模块管理','MODULE_MANAGED','/module',1,NULL,NULL,0,3,1,1,'2017-08-22 15:45:08',NULL),(41,'查询菜单','QUERY_MENU','/menu',40,NULL,'GET',1,0,1,1,'2017-09-07 11:37:49',NULL),(42,'获取系统与模块','GET_SYSTEM_MODULE','/system/module',32,NULL,'GET',1,NULL,1,1,'2017-09-11 10:53:18',NULL),(48,'家庭作业管理','HOME_WORK_MANAGE','/homeworkManage',NULL,NULL,NULL,0,0,2,1,'2018-12-22 11:47:49',NULL),(49,'班级设置','CLASS_INFO','/classinfo',48,NULL,NULL,0,0,2,1,'2018-12-22 11:49:04','2018-12-22 12:42:17'),(50,'增加班级信息','ADD_CLASS_INFO','/classinfo',49,NULL,'POST',1,0,2,1,'2018-12-22 11:50:00','2018-12-22 22:45:26'),(51,'修改班级信息','UPDATE_CLASS_INFO','/classinfo',49,NULL,'PUT',1,0,2,1,'2018-12-22 11:50:50','2018-12-22 22:45:41'),(52,'删除班级信息','DEL_CLASS_INFO','/classinfo',49,NULL,'DELETE',1,0,2,1,'2018-12-22 11:51:33','2018-12-22 22:45:51'),(53,'查询班级信息（带分页）','CLASSINFO_TABLE','/classinfo/table',49,NULL,'GET',1,0,2,1,'2018-12-23 20:10:15',NULL),(54,'查询班级信息','CLASSINFO_LIST','/classinfo/list/{userId}',49,NULL,'GET',1,0,2,1,'2018-12-23 20:43:10',NULL),(55,'群组信息','GROUP_INFO','/groupinfo',48,NULL,NULL,0,0,2,1,'2018-12-26 12:57:56',NULL);
 
 -- ----------------------------
 -- Table structure for base_role
 -- ----------------------------
 DROP TABLE IF EXISTS `base_role`;
 CREATE TABLE `base_role` (
-  `ID` varchar(36) NOT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
   `ROLE_CODE` varchar(64) DEFAULT NULL,
   `ROLE_NAME` varchar(64) DEFAULT NULL,
   `CREATE_DATE` datetime DEFAULT NULL,
   `UPDATE_DATE` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of base_role
 -- ----------------------------
-INSERT INTO `base_role` VALUES ('d352297eb11c418e94a5f8f2c1c229db', 'test', '测试角色', '2018-05-23 09:02:17', null);
-INSERT INTO `base_role` VALUES ('ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'sysadmin', '系统管理员', '2017-08-18 19:02:58', null);
+INSERT INTO `base_role` VALUES (1,'test','测试角色','2018-05-23 09:02:17',NULL),(2,'sysadmin','系统管理员','2017-08-18 19:02:58',NULL),(3,'teacher','我是老师','2018-12-21 19:43:41',NULL),(4,'student','我是学生','2018-12-21 19:51:56',NULL),(5,'parents','我是家长','2018-12-21 20:14:24',NULL),(6,'observers','观察员','2018-12-28 21:15:59',NULL);
 
 -- ----------------------------
 -- Table structure for base_role_module
 -- ----------------------------
 DROP TABLE IF EXISTS `base_role_module`;
 CREATE TABLE `base_role_module` (
-  `ID` varchar(36) NOT NULL,
-  `ROLE_ID` varchar(36) DEFAULT NULL,
-  `MODULE_ID` varchar(36) DEFAULT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
+  `ROLE_ID` bigint(12) DEFAULT NULL,
+  `MODULE_ID` bigint(12) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_Reference_3` (`ROLE_ID`),
   KEY `FK_Reference_4` (`MODULE_ID`),
   CONSTRAINT `FK_Reference_3` FOREIGN KEY (`ROLE_ID`) REFERENCES `base_role` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `FK_Reference_4` FOREIGN KEY (`MODULE_ID`) REFERENCES `base_module_resources` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=360 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of base_role_module
 -- ----------------------------
-INSERT INTO `base_role_module` VALUES ('026d241f7dd4423b9bec3fce399df981', 'd352297eb11c418e94a5f8f2c1c229db', '3c6bf3e2-969c-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('1372abd931a24bddafd05dddb59dff3b', 'd352297eb11c418e94a5f8f2c1c229db', '31e6c4b8-96a6-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('1c10003ab8324a60bf73aa9cbf116975', 'd352297eb11c418e94a5f8f2c1c229db', '7e669afe-96dc-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('2239095a8b03410b9b0f6878571ead8e', 'd352297eb11c418e94a5f8f2c1c229db', '943d1ffa-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('271b057d7dc64a0f9f37d9bf04ee8a37', 'd352297eb11c418e94a5f8f2c1c229db', '26305844-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('30fe178c114d48e299b5a576e53b855b', 'd352297eb11c418e94a5f8f2c1c229db', '2675469b-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('337779fadfa64f6c8b888a24f995c206', 'd352297eb11c418e94a5f8f2c1c229db', '113e9c94-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('4fa58e78b77e4977bdd28c4510cf428c', 'd352297eb11c418e94a5f8f2c1c229db', '7e97b3b3-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('53b2dbcf6b264f3ead75cb350b339eb1', 'd352297eb11c418e94a5f8f2c1c229db', 'fe4a6d1f-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('55fa30d390584321bc6c644c097bf7d5', 'd352297eb11c418e94a5f8f2c1c229db', '8f84a111-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('5f241edfa81e42a5b72fe3ef4fff5844', 'd352297eb11c418e94a5f8f2c1c229db', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('67ce416e629748a8b3170b2a4fab457c', 'd352297eb11c418e94a5f8f2c1c229db', '56b67433-96dc-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('6a021d873e9d4e3789a7529300937d00', 'd352297eb11c418e94a5f8f2c1c229db', 'b0c7cd02-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('73086e311647478cb084689fc972dd34', 'd352297eb11c418e94a5f8f2c1c229db', '32d0aeab-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('8a23780e6fd445b688d2be6d8c26ceb0', 'd352297eb11c418e94a5f8f2c1c229db', '142ce669-96a2-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('8ba752162b7e450595c70e58bb60eb2d', 'd352297eb11c418e94a5f8f2c1c229db', 'cecfed9a0fc5452b8b4d889e5ea121ae');
-INSERT INTO `base_role_module` VALUES ('983510d092654891b947b8547fcafccf', 'd352297eb11c418e94a5f8f2c1c229db', '366b227a-2c30-11e8-bb2a-2cfda1b1e42a');
-INSERT INTO `base_role_module` VALUES ('ac9595cd3b364bc29287714c11fd2c8e', 'd352297eb11c418e94a5f8f2c1c229db', 'eff8eda4-937d-11e7-8c99-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('b68a7540e0154047a20bd03c02962736', 'd352297eb11c418e94a5f8f2c1c229db', '2c82fb06-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('bb8f0b32dba743a289c93b755551f870', 'd352297eb11c418e94a5f8f2c1c229db', '8e669afe-96dc-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('bd046988996948d398df597eb1b66c6a', 'd352297eb11c418e94a5f8f2c1c229db', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('cecfed9a0fc5452b8b4d889e5ea121ae', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'cecfed9a0fc5452b8b4d889e5ea121ae');
-INSERT INTO `base_role_module` VALUES ('d7303d21bdf44cdda70a9579599bd597', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '5a46be4f3e3a443f9244c8e4ca8c836b');
-INSERT INTO `base_role_module` VALUES ('d81dd115b997417b96944ab07a859bc8', 'd352297eb11c418e94a5f8f2c1c229db', '8338ce98-969c-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('e8a5b312211f4b89bbabeb7c0f93bd6f', 'd352297eb11c418e94a5f8f2c1c229db', '5b5c0fe2-96a6-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('efffb16b-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '113e9c94-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0243a50-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '2c82fb06-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f024a821-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '5b5c0fe2-96a6-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02525d7-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '7bf5a9aa-96a6-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f025b799-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '7e97b3b3-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0263f61-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '8e669afe-96dc-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f026bfbc-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '9d74d7eb-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02738c2-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'adc1e2dc-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f027b914-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'c3e5fc76-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02a2f29-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'e1ff4d1d-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02abdbb-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '32d0aeab-8405-11e7-b35a-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02b4cc5-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '26305844-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02bd49a-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '31e6c4b8-96a6-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02c7096-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '4b7f31dc-96a5-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02cef1b-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '8f84a111-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02d8521-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '9fe933bc-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02e1c58-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'ad04ec2c-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02ea3b4-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'ba185893-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02f1987-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '943d1ffa-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f02f9f0d-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'b0c7cd02-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0303060-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'c54a02b8-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f030b2db-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'd3fccbfb-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0313839-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'e29bd47a-96dd-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f031cf7f-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'b25a02e3-92c7-11e7-8c99-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f032541b-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '2675469b-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f032e8cc-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '3c6bf3e2-969c-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0336590-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '42179355-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f033dd3f-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '5039b225-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f03453f7-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '5c82bed5-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f034d097-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'fe4a6d1f-96a4-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f03546c3-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'e69131c2-870d-11e7-ad1e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f035c5a8-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '142ce669-96a2-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f0364945-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '55c48c41-96a2-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04a7aa5-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '56b67433-96dc-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04b08a8-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '7362412e-96a2-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04ba0c7-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '822f714c-96a2-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04c375e-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '8338ce98-969c-11e7-863e-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04cc577-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', 'eff8eda4-937d-11e7-8c99-00ff6227aaa1');
-INSERT INTO `base_role_module` VALUES ('f04cc578-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '366b227a-2c30-11e8-bb2a-2cfda1b1e42a');
-INSERT INTO `base_role_module` VALUES ('f14cc578-96dd-11e7-863e-00ff6227aaa1', 'ea75bdec-8404-11e7-b35a-00ff6227aaa1', '7e669afe-96dc-11e7-863e-00ff6227aaa1');
+INSERT INTO `base_role_module` VALUES (43,2,1),(44,2,2),(45,2,3),(46,2,4),(47,2,5),(48,2,6),(49,2,7),(50,2,8),(51,2,9),(52,2,10),(53,2,11),(54,2,12),(55,2,13),(56,2,14),(57,2,15),(58,2,16),(59,2,17),(60,2,18),(61,2,19),(62,2,20),(63,2,21),(64,2,22),(65,2,23),(66,2,24),(67,2,25),(68,2,26),(69,2,27),(70,2,28),(71,2,29),(72,2,30),(73,2,31),(74,2,32),(75,2,33),(76,2,34),(77,2,35),(78,2,36),(79,2,37),(80,2,38),(81,2,39),(82,2,40),(83,2,41),(84,2,42),(307,1,5),(308,1,15),(309,1,16),(310,1,19),(311,1,21),(312,1,24),(313,1,27),(314,1,30),(315,1,34),(316,1,38),(317,1,7),(318,1,3),(319,1,6),(320,1,8),(321,1,11),(322,1,25),(323,1,28),(324,1,29),(325,1,33),(326,1,26),(327,1,31),(328,1,35),(329,1,36),(330,1,37),(331,1,39),(332,1,32),(333,1,4),(334,1,9),(335,1,10),(336,1,12),(337,1,17),(338,1,20),(339,1,42),(340,1,13),(341,1,14),(342,1,18),(343,1,22),(344,1,23),(345,1,41),(346,1,48),(347,1,49),(348,1,50),(349,1,51),(350,1,52),(351,1,53),(352,1,54),(353,1,55),(354,1,40),(355,6,53),(356,6,54),(357,6,55),(358,6,48),(359,6,49);
 
 -- ----------------------------
 -- Table structure for base_system
 -- ----------------------------
 DROP TABLE IF EXISTS `base_system`;
 CREATE TABLE `base_system` (
-  `ID` varchar(36) NOT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
   `SYSTEM_NAME` varchar(64) DEFAULT NULL,
   `PROJECT_NAME` varchar(64) DEFAULT NULL,
   `ACTIVE` int(11) DEFAULT NULL COMMENT '0 禁用、1 启用',
   `SORT` int(11) DEFAULT NULL,
   `CREATE_DATE` datetime DEFAULT NULL,
   `UPDATE_DATE` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of base_system
 -- ----------------------------
-INSERT INTO `base_system` VALUES ('d69060a3-914b-11e7-8c99-00ff6227aaa1', '权限管理系统', 'main-data', '1', '1', '2017-09-04 16:37:54', '2018-05-13 17:27:23');
-
+INSERT INTO `base_system` VALUES (1,'用户权限管理（UPMS）','main-data',1,1,'2017-09-04 16:37:54','2018-12-21 22:33:52'),(2,'家庭作业登记(HWR)','home-work',1,NULL,'2018-12-21 22:35:09',NULL);
 -- ----------------------------
 -- Table structure for base_user
 -- ----------------------------
 DROP TABLE IF EXISTS `base_user`;
 CREATE TABLE `base_user` (
-  `ID` varchar(36) NOT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
   `USER_NAME` varchar(100) DEFAULT NULL,
   `PASSWORD` varchar(255) DEFAULT NULL,
   `PHONE` varchar(11) DEFAULT NULL,
@@ -230,32 +125,31 @@ CREATE TABLE `base_user` (
   `CREATE_DATE` datetime DEFAULT NULL,
   `UPDATE_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `AK_Key_2` (`USER_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of base_user
 -- ----------------------------
-INSERT INTO `base_user` VALUES ('0cb71fdd99d743ae9c8db85039609687', 'test', '$2a$06$SBrOxaGm8nzNCEggHXh2yumyPr1ZC2vqcC.yawhwhQrfoFdXemXCi', '13100000000', 'male', '0', '1', '2018-05-23 09:00:55', null);
+INSERT INTO `base_user` VALUES (1,'test','$2a$06$SBrOxaGm8nzNCEggHXh2yumyPr1ZC2vqcC.yawhwhQrfoFdXemXCi','13100000000','male',0,1,'2018-05-23 09:00:55',NULL),(2,'pangj','$2a$06$.ojW348djAi4GZR3rlukH.GKhOYaVlsqlfYpuNl3tL/W.1uFAp2La','13575498531','male',37,1,'2018-12-21 20:47:57',NULL),(3,'panyue','$2a$06$gw/QGPzn3G8WdHNa2/KC4O//7NkAMCxFPde3GGmDjpsVjp8p61XaW','15858244124','female',10,1,'2018-12-21 20:48:26',NULL),(4,'qiankp','$2a$06$Qn4wxaNsHCwmjDnRjQIP4.26w/pX4bznkN37gQFKgMIL1ccI6GFn2','13575473199','female',36,1,'2018-12-21 22:45:17',NULL),(5,'qinx','$2a$06$5tUZ7K7wdTMJeRAvo8TCFO0bIz/14pnpk42hGFIXCqAdz8UkI.Hii','13838888888','female',5,1,'2018-12-28 21:08:52',NULL),(6,'dady','$2a$06$MhcKYJ5SQLb4bHUR95puWOzddNpDjOcXWLNDKEFJZ9NtmXFgFbY96','13805718888','male',20,1,'2018-12-30 16:12:41',NULL);
 
 -- ----------------------------
 -- Table structure for base_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `base_user_role`;
 CREATE TABLE `base_user_role` (
-  `ID` varchar(36) NOT NULL,
-  `USER_ID` varchar(36) DEFAULT NULL,
-  `ROLE_ID` varchar(36) DEFAULT NULL,
+  `ID` bigint(12) NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(36) DEFAULT NULL,
+  `ROLE_ID` bigint(36) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_Reference_2` (`ROLE_ID`),
   CONSTRAINT `FK_Reference_2` FOREIGN KEY (`ROLE_ID`) REFERENCES `base_role` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of base_user_role
 -- ----------------------------
-INSERT INTO `base_user_role` VALUES ('9c263bcb22d84f1aa0193e809c2ef4dd', '0cb71fdd99d743ae9c8db85039609687', 'd352297eb11c418e94a5f8f2c1c229db');
-
+INSERT INTO `base_user_role` VALUES (1,1,1),(2,1,2),(4,3,4),(5,5,4),(6,2,5),(7,2,1),(8,2,2),(9,6,1);
 -- ----------------------------
 -- Table structure for oauth_access_token
 -- ----------------------------
