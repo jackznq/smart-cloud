@@ -15,9 +15,9 @@ Date: 2019-01-31 19:07:19
 
 set character set utf8;
 -- 创建数据库
-create database `basic-data` default character set utf8 collate utf8_general_ci;
+create database `basic_data` default character set utf8 collate utf8_general_ci;
 
-use `basic-data`;
+use `basic_data`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
