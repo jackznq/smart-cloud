@@ -20,9 +20,9 @@ turbine:
     cluster-name-expression: new String('default') #集群名称
 receiver:
   mobiles:
-    - 17034642119
+    - 13575498531
   emails: |
-    fp2952@163.com
+    909436637@qq.com
 
 logging:
   file: logs/monitor.log

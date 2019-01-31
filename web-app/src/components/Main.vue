@@ -68,7 +68,7 @@
         <!--footer-->
         <el-footer height="40px">
           <el-col :span="24" class="main-foot">
-            2018 - 2019 © fp2952
+            2018 - 2019 © cqupgj
           </el-col>
         </el-footer>
       </el-container>

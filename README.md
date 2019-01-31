@@ -43,11 +43,6 @@ phone: 13100000000 verifyCode: 1000
 │
 ```
 
-  
-
-## 相关博文
-
-
 ## Quick Start  
 ### 依赖环境    
 JDK8、 Maven、 Mysql、 Redis、Consul、 Rabbitmq、Nodejs、 Docker(可选)、 docker-compose(可选)  

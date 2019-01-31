@@ -54,7 +54,7 @@ security:
       serviceId: ${spring.application.name}
 # mybatis 配置
 mybatis:
-  type-aliases-package: com.peng.main.api.mapper.model
+  type-aliases-package: com.smartcloud.main.api.mapper.model
   mapper-locations: classpath:mybatis/mapper/*.xml
 # Mapper 配置
 mapper:

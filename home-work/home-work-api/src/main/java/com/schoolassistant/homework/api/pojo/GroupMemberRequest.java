@@ -1,6 +1,6 @@
 package com.schoolassistant.homework.api.pojo;
 
-import com.peng.common.pojo.BaseRequestPojo;
+import com.smartcloud.common.pojo.BaseRequestPojo;
 
 import java.io.Serializable;
 import java.util.Date;

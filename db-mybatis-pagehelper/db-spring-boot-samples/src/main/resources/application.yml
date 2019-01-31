@@ -30,7 +30,7 @@ spring:
         login-password: "000000"
 # mybatis 配置
 mybatis:
-  type-aliases-package: com.peng.db.spring.boot.samples.mapper.model
+  type-aliases-package: com.smartcloud.db.spring.boot.samples.mapper.model
   mapper-locations: classpath:mybatis/mapper/*.xml
 # mapper 配置
 mapper:

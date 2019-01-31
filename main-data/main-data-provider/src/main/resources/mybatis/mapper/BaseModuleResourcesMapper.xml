@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.peng.main.provider.mapper.mapper.BaseModuleResourcesMapper" >
-  <resultMap id="BaseResultMap" type="com.peng.main.api.mapper.model.BaseModuleResources" >
+<mapper namespace="com.smartcloud.main.provider.mapper.mapper.BaseModuleResourcesMapper" >
+  <resultMap id="BaseResultMap" type="com.smartcloud.main.api.mapper.model.BaseModuleResources" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -20,7 +20,7 @@
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
 
-  <resultMap id="menuMap" type="com.peng.main.api.mapper.model.BaseModuleResources">
+  <resultMap id="menuMap" type="com.smartcloud.main.api.mapper.model.BaseModuleResources">
     <!--
       WARNING - @mbg.generated
     -->
@@ -40,7 +40,7 @@
     <collection  column="{ID=ID,USER_ID=USER_ID}" property="subModules" select="selectMenusByParentIdWithOperating" />
   </resultMap>
 
-  <resultMap id="rolesMap" type="com.peng.main.api.mapper.model.BaseModuleResources">
+  <resultMap id="rolesMap" type="com.smartcloud.main.api.mapper.model.BaseModuleResources">
     <!--
       WARNING - @mbg.generated
     -->
@@ -61,7 +61,7 @@
     <collection  column="{ID=ID,USER_ID=USER_ID}" property="subModules" select="selectModuleByParentId" />
   </resultMap>
 
-  <resultMap id="moduleTree" type="com.peng.main.api.mapper.model.BaseModuleResources">
+  <resultMap id="moduleTree" type="com.smartcloud.main.api.mapper.model.BaseModuleResources">
     <!--
       WARNING - @mbg.generated
     -->
@@ -82,7 +82,7 @@
     <collection  column="{ID=ID}" property="subModules" select="selectModuleTreeByParentId" />
   </resultMap>
 
-  <resultMap id="ModuleAndSystemMap" type="com.peng.main.api.pojo.response.ModuleAndSystemResponse" >
+  <resultMap id="ModuleAndSystemMap" type="com.smartcloud.main.api.pojo.response.ModuleAndSystemResponse" >
     <!--
       WARNING - @mbggenerated
     -->

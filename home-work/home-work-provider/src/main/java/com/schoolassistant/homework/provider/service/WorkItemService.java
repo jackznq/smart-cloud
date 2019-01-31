@@ -1,6 +1,6 @@
 package com.schoolassistant.homework.provider.service;
 
-import com.peng.db.spring.boot.autoconfigure.service.BaseService;
+import com.smartcloud.db.spring.boot.autoconfigure.service.BaseService;
 import com.schoolassistant.homework.api.constant.SimpleConst;
 import com.schoolassistant.homework.api.mapper.model.ClassStudentList;
 import com.schoolassistant.homework.api.mapper.model.GroupMember;

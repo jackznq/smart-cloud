@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.peng.main.provider.mapper.mapper.BaseSystemMapper" >
-  <resultMap id="BaseResultMap" type="com.peng.main.api.mapper.model.BaseSystem" >
+<mapper namespace="com.smartcloud.main.provider.mapper.mapper.BaseSystemMapper" >
+  <resultMap id="BaseResultMap" type="com.smartcloud.main.api.mapper.model.BaseSystem" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -14,14 +14,14 @@
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
 
-  <resultMap id="ModuleAndSystemMap" type="com.peng.main.api.pojo.response.ModuleAndSystemResponse" >
+  <resultMap id="ModuleAndSystemMap" type="com.smartcloud.main.api.pojo.response.ModuleAndSystemResponse" >
     <!--
       WARNING - @mbggenerated
     -->
     <id column="ID" property="id" jdbcType="BIGINT" />
     <result column="SYSTEM_NAME" property="moduleName" jdbcType="VARCHAR" />
     <collection  column="{ID=ID}" property="subModules"
-                 select="com.peng.main.provider.mapper.mapper.BaseModuleResourcesMapper.selectModuleAndSystemBySystemId" />
+                 select="com.smartcloud.main.provider.mapper.mapper.BaseModuleResourcesMapper.selectModuleAndSystemBySystemId" />
   </resultMap>
 
   <select id="selectModuleAndSystem" resultMap="ModuleAndSystemMap">

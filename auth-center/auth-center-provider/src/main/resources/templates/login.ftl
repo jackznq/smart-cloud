@@ -124,7 +124,7 @@
     </div>
 </div>
 <div style="text-align: center">
-    <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备18027057号</a>
+    <a href="#" target="_blank">909436637@qq.com</a>
 </div>
 </body>
 <script src="webjars/jquery/3.2.1/jquery.min.js" ></script>
