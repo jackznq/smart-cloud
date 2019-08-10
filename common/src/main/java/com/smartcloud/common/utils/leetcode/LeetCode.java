@@ -15,11 +15,16 @@ public class LeetCode {
 //        List<List<Integer>> lists = combinationSum2(can, 12);
 //        List<List<Integer>> lists = combinationSum3(3, 7);
 //        System.out.println(lists);
-        int nums[] = {48, 99, 37, 4};
+        int nums[] = {2, -1, 2, 5, 7, 4};
 //        System.out.println(Arrays.toString(twoSum(nums, 20)));
 //        System.out.println(shortestSubarray(nums, 140));
 //        System.out.println(getHint("1101", "1011"));
-        System.out.println(rob(nums));
+//        System.out.println(rob(nums));
+        ListNode one = new ListNode(1);
+        one.next = new ListNode(2);
+
+//        System.out.println(rotateRight(one, 1));
+        System.out.println(shortestSubarray(nums, 8));
     }
 
     public static int compress(char[] chars) {
@@ -157,7 +162,7 @@ public class LeetCode {
         return null;
     }
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -260,35 +265,116 @@ public class LeetCode {
         }
         return res;
     }
+//
+//    public static int shortestSubarray(int[] A, int K) {
+//        if (A.length == 0) return -1;
+//        Arrays.sort(A);
+//        List<List<Integer>> res = new ArrayList<>();
+//        dfs(A, 0, res, new ArrayList<>(), K);
+//        if (res.size() == 0) return -1;
+//        int data = Integer.MAX_VALUE;
+//        for (List list : res) {
+//            if (list.size() < data) {
+//                data = list.size();
+//            }
+//        }
+//        return data;
+////           return res.stream().sorted(Comparator.comparing())
+//    }
 
+//    public static void dfs(int[] nums, int start, List<List<Integer>> res, List<Integer> temp, int target) {
+//        for (int i = start; i < nums.length; i++) {
+//            List<Integer> each = new ArrayList<>(temp);
+//            if (nums[i] >= target) {
+//                each.add(nums[i]);
+//                res.add(each);
+//                break;
+//            } else if (nums[i] < target) {
+//                each.add(nums[i]);
+//                dfs(nums, i + 1, res, each, target - nums[i]);
+//            }
+//        }
+//    }
+
+    /**
+     * 返回 A 的最短的非空连续子数组的长度，该子数组的和至少为 K 。
+     * <p>
+     * 如果没有和至少为 K 的非空子数组，返回 -1 。
+     * <p>
+     * <p>
+     * <p>
+     * 示例 1：
+     * <p>
+     * 输入：A = [1], K = 1
+     * 输出：1
+     * 示例 2：
+     * <p>
+     * 输入：A = [1,2], K = 4
+     * 输出：-1
+     * 示例 3：
+     * <p>
+     * 输入：A = [2,-1,2], K = 3
+     * 输出：3
+     * <p>
+     * <p>
+     * 提示：
+     * <p>
+     * 1 <= A.length <= 50000
+     * -10 ^ 5 <= A[i] <= 10 ^ 5
+     * 1 <= K <= 10 ^ 9
+     *
+     * @param A
+     * @param K
+     * @return
+     */
     public static int shortestSubarray(int[] A, int K) {
         if (A.length == 0) return -1;
-        Arrays.sort(A);
-        List<List<Integer>> res = new ArrayList<>();
-        dfs(A, 0, res, new ArrayList<>(), K);
-        if (res.size() == 0) return -1;
-        int data = Integer.MAX_VALUE;
-        for (List list : res) {
-            if (list.size() < data) {
-                data = list.size();
-            }
-        }
-        return data;
-//           return res.stream().sorted(Comparator.comparing())
-    }
+//        TreeMap<Long, Integer> tree = new TreeMap<>();
+//        long total = 0;
+//        int minLen = Integer.MAX_VALUE;
+//        for (int i = 0; i < A.length; i++) {
+//            total += A[i];
+//            Long num = tree.floorKey(total - K);
+//            if (total >= K) {
+//                if (i + 1 < minLen) {
+//                    minLen = i + 1;
+//                }
+//            }
+//            while (num != null) {
+//                if (i - tree.get(num) < minLen) {
+//                    minLen = i - tree.get(num);
+//                }
+//                tree.remove(num);
+//                num = tree.lowerKey(num);
+//            }
+//            tree.put(total, i);
+//        }
+//        return minLen == Integer.MAX_VALUE ? -1 : minLen;
+        int N = A.length;
+        long[] P = new long[N + 1];
+        for (int i = 0; i < N; ++i)
+            P[i + 1] = P[i] + (long) A[i];
 
-    public static void dfs(int[] nums, int start, List<List<Integer>> res, List<Integer> temp, int target) {
-        for (int i = start; i < nums.length; i++) {
-            List<Integer> each = new ArrayList<>(temp);
-            if (nums[i] >= target) {
-                each.add(nums[i]);
-                res.add(each);
-                break;
-            } else if (nums[i] < target) {
-                each.add(nums[i]);
-                dfs(nums, i + 1, res, each, target - nums[i]);
+        // Want smallest y-x with P[y] - P[x] >= K
+        int ans = N + 1; // N+1 is impossible
+        Deque<Integer> monoq = new LinkedList(); //opt(y) candidates, as indices of P
+
+        for (int y = 0; y < P.length; ++y) {
+            // Want opt(y) = largest x with P[x] <= P[y] - K;
+            while (!monoq.isEmpty() && P[y] <= P[monoq.getLast()])
+                monoq.removeLast();
+            while (!monoq.isEmpty() && P[y] >= P[monoq.getFirst()] + K){
+
+                Integer removeFirst = monoq.removeFirst();
+                int min = Math.min(ans, y - removeFirst);
+                System.out.println("最小值ans:"+min+"位置:"+y+"removeFirst:"+removeFirst);
+                ans = min;
             }
+
+            monoq.addLast(y);
         }
+
+        return ans < N + 1 ? ans : -1;
     }
 
     public static String getHint(String secret, String guess) {
@@ -316,8 +402,49 @@ public class LeetCode {
         return Math.max(prevNo, prevYes);
     }
 
-    public ListNode rotateRight(ListNode head, int k) {
+    public static ListNode rotateRight(ListNode head, int k) {
 
-        return null;
+        if (head == null) return head;
+        if (head.next == null) return head;
+        if (k < 1) return head;
+        for (int i = 0; i < k; i++) {
+            ListNode pre = null;
+            ListNode cur = head;
+            while (cur != null) {
+                if (cur.next.next == null) {
+                    pre = cur.next;
+                    cur.next = null;
+                    break;
+                }
+                cur = cur.next;
+            }
+            pre.next = head;
+            head = pre;
+        }
+
+        return head;
     }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists.length == 0) return null;
+        List<Integer> res = new ArrayList<>();
+        for (ListNode ln : lists) {
+            if (ln != null) {
+                res.add(ln.val);
+                ln = ln.next;
+            }
+        }
+
+        Collections.sort(res);
+        ListNode pre = new ListNode(0);
+        ListNode cur = pre;
+        for (int i : res) {
+            ListNode temp = new ListNode(i);
+            cur.next = temp;
+            cur = cur.next;
+        }
+        cur.next = null;
+        return pre.next;
+    }
+
 }
