@@ -34,6 +34,7 @@
         <module>visul</module>
         <module>mc-service</module>
         <module>home-work</module>
+
     </modules>
 
     <dependencyManagement>
@@ -58,6 +59,18 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${docker.plugin.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.briandilley.jsonrpc4j</groupId>
+                <artifactId>jsonrpc4j</artifactId>
+                <version>1.5.3</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

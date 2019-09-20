@@ -1,0 +1,2 @@
+username=znq
+password=znq
