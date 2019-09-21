@@ -24,6 +24,7 @@ public class Main {
 
                 new URL("http://localhost:8091/contract/template?"+data));
         Integer getData = client.invoke("getData", null, Integer.class);
+
         System.out.println(getData);
     }
 }
