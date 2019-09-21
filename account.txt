@@ -1,2 +1,2 @@
-username=znt
+username=znq
 password=znq
