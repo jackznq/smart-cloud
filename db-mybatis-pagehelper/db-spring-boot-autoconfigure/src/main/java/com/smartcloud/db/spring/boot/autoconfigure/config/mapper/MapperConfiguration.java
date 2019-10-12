@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
-import tk.mybatis.mapper.mapperhelper.MapperHelper;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.mapperhelper.MapperHelper;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

@@ -1,9 +1,5 @@
 package com.smartcloud.common.utils.structure;
 
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
-import org.omg.PortableInterceptor.INACTIVE;
-
 import java.util.ArrayList;
 
 /**

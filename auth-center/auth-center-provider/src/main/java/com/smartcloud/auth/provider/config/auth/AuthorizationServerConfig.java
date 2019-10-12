@@ -2,7 +2,6 @@ package com.smartcloud.auth.provider.config.auth;
 
 
 import com.smartcloud.auth.api.token.JwtAccessToken;
-
 import com.smartcloud.auth.provider.service.UsernameUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

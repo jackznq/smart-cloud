@@ -1,8 +1,8 @@
 package com.smartcloud.auth.provider.service;
 
-import com.smartcloud.main.api.pojo.ResponseCode;
 import com.smartcloud.common.pojo.ResponseData;
 import com.smartcloud.main.api.mapper.model.BaseUser;
+import com.smartcloud.main.api.pojo.ResponseCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

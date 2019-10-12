@@ -2,7 +2,6 @@ package com.smartcloud.common.utils.leetcode;
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**

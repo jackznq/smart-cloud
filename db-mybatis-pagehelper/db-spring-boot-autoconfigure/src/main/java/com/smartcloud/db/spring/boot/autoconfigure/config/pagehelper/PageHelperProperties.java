@@ -1,5 +1,7 @@
 package com.smartcloud.db.spring.boot.autoconfigure.config.pagehelper;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import java.util.Properties;
 
 @ConfigurationProperties(prefix = PageHelperProperties.PAGEHELPER_PREFIX)

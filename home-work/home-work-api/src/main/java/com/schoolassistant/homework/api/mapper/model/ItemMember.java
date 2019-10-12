@@ -1,7 +1,9 @@
 package com.schoolassistant.homework.api.mapper.model;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "item_member")
 public class ItemMember {

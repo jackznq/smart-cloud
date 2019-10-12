@@ -1,7 +1,7 @@
 package com.schoolassistant.homework.provider.service;
 
-import com.smartcloud.db.spring.boot.autoconfigure.service.BaseService;
 import com.schoolassistant.homework.api.mapper.model.ClassStudentList;
+import com.smartcloud.db.spring.boot.autoconfigure.service.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

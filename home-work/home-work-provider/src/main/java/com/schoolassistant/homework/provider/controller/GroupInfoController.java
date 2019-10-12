@@ -1,16 +1,16 @@
 package com.schoolassistant.homework.provider.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.smartcloud.auth.spring.boot.autoconfigure.utils.AccessTokenUtils;
-import com.smartcloud.common.pojo.ResponseCode;
-import com.smartcloud.common.pojo.ResponseData;
-import com.smartcloud.common.pojo.TableData;
-import com.smartcloud.db.spring.boot.autoconfigure.controller.CrudController;
 import com.schoolassistant.homework.api.mapper.model.GroupInfo;
 import com.schoolassistant.homework.api.mapper.model.GroupMember;
 import com.schoolassistant.homework.api.pojo.GroupInfoRequest;
 import com.schoolassistant.homework.provider.service.GroupInfoService;
 import com.schoolassistant.homework.provider.service.GroupMemberService;
+import com.smartcloud.auth.spring.boot.autoconfigure.utils.AccessTokenUtils;
+import com.smartcloud.common.pojo.ResponseCode;
+import com.smartcloud.common.pojo.ResponseData;
+import com.smartcloud.common.pojo.TableData;
+import com.smartcloud.db.spring.boot.autoconfigure.controller.CrudController;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

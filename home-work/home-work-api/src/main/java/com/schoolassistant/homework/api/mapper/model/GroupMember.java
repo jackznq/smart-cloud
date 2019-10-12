@@ -1,7 +1,10 @@
 package com.schoolassistant.homework.api.mapper.model;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "group_member")
 public class GroupMember {
