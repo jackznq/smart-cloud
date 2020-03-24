@@ -1,6 +1,5 @@
 package com.smartcloud.common.leetCode.practice;
 
-import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,11 +61,11 @@ public class ThreeSum {
         Arrays.sort(arr);
         int mark = 0;
         int nEnd = 1 << length;
-        List<List<Integer>> result = Lists.newArrayList();
+        List<List<Integer>> result = new ArrayList<>();
 //        Set<List<Integer>> listSet = Sets.newHashSet();
         List<Integer> subResult = null;
         for (mark = 0; mark < nEnd; mark++) {
-            subResult = Lists.newArrayList();
+            subResult = new ArrayList<>();
             for (int i = 0; i < length; i++) {
                 if (((1 << i) & mark) != 0) {//该位有元素输出
                     subResult.add(arr[i]);

@@ -1,7 +1,7 @@
 package com.smartcloud.common.leetCode;
 
-import org.javacore.leetCode.linkedlist.ListNode;
-import org.javacore.leetCode.tree.TreeNode;
+
+import com.smartcloud.common.leetCode.tree.TreeNode;
 
 import java.math.BigInteger;
 import java.util.*;

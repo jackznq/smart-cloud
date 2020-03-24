@@ -1,6 +1,7 @@
 package com.smartcloud.common.leetCode.practice.list;
 
-import org.javacore.leetCode.linkedlist.ListNode;
+
+import com.smartcloud.common.leetCode.linkedlist.ListNode;
 
 import java.util.HashSet;
 import java.util.Stack;

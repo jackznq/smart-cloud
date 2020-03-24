@@ -1,6 +1,7 @@
 package com.smartcloud.common.leetCode.queue;
 
-import org.javacore.leetCode.linkedlist.LinkedList;
+
+import com.smartcloud.common.leetCode.linkedlist.LinkedList;
 
 /**
  * 链表实现栈

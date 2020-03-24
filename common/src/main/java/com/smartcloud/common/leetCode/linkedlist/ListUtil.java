@@ -1,7 +1,7 @@
 package com.smartcloud.common.leetCode.linkedlist;
 
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -178,7 +178,7 @@ public class ListUtil {
 
     public static List<ListNode> divide(ListNode head, ListNode one, ListNode two) {
 
-        List result = Lists.newArrayList();
+        List result = new ArrayList();
         // Split the nodes to these 'a' and 'b' lists
         ListNode current = head;
         while (current != null) {

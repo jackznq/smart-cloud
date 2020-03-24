@@ -1,6 +1,7 @@
 package com.smartcloud.common.leetCode.practice.string;
 
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 判断两个字符串是否互为变形词
@@ -28,19 +29,19 @@ public class StringJuge {
     }
 
     /**
-     *  字符串中数字字串的求和
+     * 字符串中数字字串的求和
      *
      * @param s
      * @return
      */
     public static int numsum(String s) {
-        if (!StringUtils.hasText(s))
+        if (!StringUtils.isNotBlank(s))
             throw new NullPointerException();
         char[] a = s.toCharArray();
-        int sum =0;
-        for (int i=0;i<a.length;i++){
-            if (a[i]>0 && a[i]<9){
-                sum+=a[i];
+        int sum = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > 0 && a[i] < 9) {
+                sum += a[i];
             }
 
         }
